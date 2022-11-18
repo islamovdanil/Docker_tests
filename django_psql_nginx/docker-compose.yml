@@ -1,0 +1,39 @@
+version: '2.10'
+
+services:
+  django:
+    build: .
+    command: sh -c "cd /django_psql_nginx && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./django_psql_nginx:/django_psql_nginx
+      - static_data:/django_psql_nginx/static
+    expose:
+      - 8000
+    environment:
+      - DATABASE_URL=postgresql://django:django_Zaq123!@db:5432/django
+      - DEBUG=1
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django_Zaq123!
+      - POSTGRES_DB=django
+
+  nginx:
+    image: nginx:1.21-alpine
+    depends_on:
+      - django
+    ports:
+      - "80:80"
+    volumes:
+      - static_data:/var/www/html/static
+      - ./nginx-conf.d:/etc/nginx/conf.d
+
+volumes:
+  pg_data:
+  static_data:
