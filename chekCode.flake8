@@ -1,4 +1,4 @@
 [flake8]
-exclude = .git,__pycache__,venv
-extend-ignore = E225, E501, I100, I201, I202, C812
+exclude = .git,__pycache__,venv,manage.py,settings.py
+extend-ignore = E225,E501,I100,I201,I202,C812
 max-line-length = 120
