@@ -1,4 +1,9 @@
 [flake8]
-exclude = .git,__pycache__,venv,django_psql_nginx/manage.py,django_psql_nginx/django_psql_nginx/settings.py
+exclude =
+    .git,
+    __pycache__,
+    venv,
+    django_psql_nginx/manage.py,
+    django_psql_nginx/django_psql_nginx/settings.py
 ignore = C812,E225,E501,I100,I201,I202
 max-line-length = 120
